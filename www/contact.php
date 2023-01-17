@@ -1,11 +1,6 @@
 <?php
-
-require_once __DIR__ . '/../src/init.php';
-// $db
-// $_SESSION
-
+include('view/header.php');
 $page_title = 'Contact';
-require_once __DIR__ . '/../src/templates/partials/html_head.php';
 
 ?>
 <body>
@@ -35,6 +30,5 @@ require_once __DIR__ . '/../src/templates/partials/html_head.php';
     </form>
 </div>
 
-<?php require_once __DIR__ . '/../src/templates/partials/footer.php'; ?>
 </body>
 </html>
