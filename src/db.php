@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/config.example.php';
 
 try {
 	$dsn = 'mysql:host='.$config['db']['host'].';dbname='.$config['db']['name'].';port='.$config['db']['port'].'';
