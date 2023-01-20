@@ -1,6 +1,6 @@
 <?php
 
-require_once('../../src/class/DbObject.php');
+require_once __DIR__.('/../../src/class/DbObject.php');
 $dbObject = new DbObject();
 $created_at = $dbObject->getCreatedAt();
 
