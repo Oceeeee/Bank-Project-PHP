@@ -2,7 +2,7 @@
         <ul>
 
         <div class="h">
-                <li><a href="index.php" class="lien">/CodeBank</p></li>
+                <li><a href="index.php" class="lien">/CodeBank</a></li>
                 <li><a href="index.php" class="lien">ACCUEIL</a></li>
                 <li><a href="contact.php" class="lien">NOUS CONTACTER</a></li>
                 <li><a href="login.php" class="lien">CONNEXION</a></li>
