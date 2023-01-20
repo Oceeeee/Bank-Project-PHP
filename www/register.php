@@ -31,7 +31,7 @@ require_once __DIR__ . '/actions/form_register.php';
             <div class="o">
                     <input placeholder="Date de naissance" type="date" id="birthdate" name="birthdate" required>
             </div>
-            <button type="submit">INSCRIPTION</button>
+            <button name="register-submit" type="submit">INSCRIPTION</button>
     </div>
     </form>
 

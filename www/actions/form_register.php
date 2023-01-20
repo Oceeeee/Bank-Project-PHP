@@ -12,7 +12,7 @@ function generate_french_iban()
     return $iban;
 }
 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true){
-    header('location:index.php');
+    header('Location: ../index.php');
 } else {
     if (isset($_POST['register-submit'])) {
         if (!isset($_POST['firstname'], $_POST['lastname'], $_POST['birthdate'], $_POST['mail'], $_POST['password']) && empty($_POST['firstname']) || empty($_POST['lastname']) || empty('birthdate') || empty($_POST['mail']) || empty($_POST['password'])) {
@@ -28,21 +28,15 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true){
                 $check_Email = $dbManager->select('SELECT * FROM users WHERE mail = ?', [$email], 'User');
                 if ($check_Email) {
                     $err_mail = 'Email est déjà utilisé';
-                    $email_Ok = 1;
                 } else {
-                    $email_Ok = 2;
+                    $iban_number = generate_french_iban();
+                    $insertuser = $dbManager->insert('INSERT INTO users(role_id, firstname, lastname, birthdate, mail, password, iban) VALUES(?,?,?,?,?,?,?)', [1, $firstname, $lastname, $birthdate, $email, hash('sha256', $password), $iban_number]);
                 }
             } else {
-                $err_mail = "Email n'est pas valide";
-                $email_Ok = 1;
-            }
-            if ($email_Ok == 2) {
-                $iban_number = generate_french_iban();
-                $insertuser = $dbManager->insert('INSERT INTO users(role_id, firstname, lastname, birthdate, mail, password, iban) VALUES(?,?,?,?,?,?)', [1, $firstname, $lastname, $birthdate, $email, hash('sha256', $password), $iban_number]);
-                echo 'test';
-                //header('location:login.php');
+                $err_mail = "Email n'est pas valide";            
             }
         }
+        
     }
 }
 ?>
