@@ -11,7 +11,6 @@ function generate_french_iban()
     $iban = 'FR' . $check_digits . $bank_code . $account_number;
     return $iban;
 }
-
 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true){
     header('location:index.php');
 } else {
@@ -24,22 +23,26 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true){
             $birthdate = $_POST['birthdate'];
             $email = trim($_POST['mail']);
             $password = $_POST['password'];
+            echo 'truc';
             if ((filter_var($email, FILTER_VALIDATE_EMAIL))) {
                 $check_Email = $dbManager->select('SELECT * FROM users WHERE mail = ?', [$email], 'User');
                 if ($check_Email) {
                     $err_mail = 'Email est déjà utilisé';
+                    $email_Ok = 1;
                 } else {
-                    $iban_number = generate_french_iban();
-                    $insertuser = $dbManager->insert('INSERT INTO users(role_id, firstname, lastname, birthdate, mail, password, iban) VALUES(?,?,?,?,?,?,?)',
-                    [1, $firstname, $lastname, $birthdate, $email, hash('sha256', $password), $iban_number]);
+                    $email_Ok = 2;
                 }
             } else {
                 $err_mail = "Email n'est pas valide";
+                $email_Ok = 1;
             }
-
-            
+            if ($email_Ok == 2) {
+                $iban_number = generate_french_iban();
+                $insertuser = $dbManager->insert('INSERT INTO users(role_id, firstname, lastname, birthdate, mail, password, iban) VALUES(?,?,?,?,?,?)', [1, $firstname, $lastname, $birthdate, $email, hash('sha256', $password), $iban_number]);
+                echo 'test';
+                //header('location:login.php');
+            }
         }
     }
 }
-
 ?>
