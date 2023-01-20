@@ -2,8 +2,9 @@
 
 $config = ['db' => [
     'host' => 'localhost',
-    'name' => 'bankphp',
-    'port' => 8888,
+    'name' => 'projetbank',
+    'port' => 3306,
     'user' => 'root',
     'pass' => ''
 ]];
+
